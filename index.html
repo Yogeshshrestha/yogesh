@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- SEO Meta Tags -->
+    <title>Yogesh | Frontend Developer · AI Architect · Web3 Builder</title>
+    <meta name="description" content="Portfolio of Yogesh — Frontend Developer, AI Architect, and Web3 Builder from Kathmandu, Nepal. Building the future one system at a time." />
+    <meta name="keywords" content="frontend developer, web3, AI, React, JavaScript, Kathmandu, Nepal" />
+    <meta name="author" content="Yogesh" />
+
+    <!-- Open Graph for social sharing -->
+    <meta property="og:title" content="Yogesh | Frontend Developer · AI Architect · Web3 Builder" />
+    <meta property="og:description" content="Building the future one system at a time." />
+    <meta property="og:type" content="website" />
+
+    <!-- Google Fonts: Bebas Neue, Inter, JetBrains Mono, Noto Sans JP -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600&family=Noto+Sans+JP:wght@300;400;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+
+  <body>
+    <!-- ═══════════════════════════════════════════════════
+         NAVIGATION — Fixed top bar, hidden until hero loads
+    ═══════════════════════════════════════════════════ -->
+    <nav id="main-nav" class="nav hidden" aria-label="Main navigation">
+      <div class="nav-logo">
+        <span class="nav-logo-jp">ヨゲシュ</span>
+        <span class="nav-logo-name">YOGESH</span>
+      </div>
+      <ul class="nav-links" role="list">
+        <li><a href="#hero" class="nav-link" data-section="hero">01 / ORIGIN</a></li>
+        <li><a href="#about" class="nav-link" data-section="about">02 / CHARACTER</a></li>
+        <li><a href="#projects" class="nav-link" data-section="projects">03 / QUEST LOG</a></li>
+        <li><a href="#contact" class="nav-link" data-section="contact">04 / GUILD BOARD</a></li>
+      </ul>
+      <button class="nav-menu-btn" id="nav-menu-btn" aria-label="Toggle mobile menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+
+    <!-- Mobile Nav Overlay -->
+    <div class="mobile-nav" id="mobile-nav" aria-hidden="true">
+      <ul class="mobile-nav-links" role="list">
+        <li><a href="#hero" class="mobile-nav-link">01 / ORIGIN</a></li>
+        <li><a href="#about" class="mobile-nav-link">02 / CHARACTER</a></li>
+        <li><a href="#projects" class="mobile-nav-link">03 / QUEST LOG</a></li>
+        <li><a href="#contact" class="mobile-nav-link">04 / GUILD BOARD</a></li>
+      </ul>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════
+         SCENE 1 — HERO SECTION
+         The opening frame. Like an anime title card.
+    ═══════════════════════════════════════════════════ -->
+    <section id="hero" class="hero" aria-label="Hero section">
+
+      <!-- Canvas for the particle background -->
+      <canvas id="hero-canvas" aria-hidden="true"></canvas>
+
+      <!-- Decorative corner elements — pure aesthetic -->
+      <div class="hero-corner hero-corner--tl" aria-hidden="true"></div>
+      <div class="hero-corner hero-corner--tr" aria-hidden="true"></div>
+      <div class="hero-corner hero-corner--bl" aria-hidden="true"></div>
+      <div class="hero-corner hero-corner--br" aria-hidden="true"></div>
+
+      <!-- Decorative scan lines -->
+      <div class="hero-scanlines" aria-hidden="true"></div>
+
+      <!-- Main hero content -->
+      <div class="hero-content">
+
+        <!-- Episode tag — like anime episode title -->
+        <div class="hero-episode" aria-hidden="true">
+          <span class="hero-episode-line"></span>
+          <span class="hero-episode-text">EPISODE 01 — THE PROTAGONIST APPEARS</span>
+          <span class="hero-episode-line"></span>
+        </div>
+
+        <!-- Japanese decorative text -->
+        <p class="hero-jp" aria-hidden="true" id="hero-jp">フロントエンド開発者</p>
+
+        <!-- The main name — revealed letter by letter -->
+        <h1 class="hero-name" id="hero-name" aria-label="Yogesh">
+          <!-- Letters injected by hero.js -->
+        </h1>
+
+        <!-- Cursor blink element — appears during name reveal -->
+        <span class="hero-cursor" id="hero-cursor" aria-hidden="true">|</span>
+
+        <!-- Title typewriter — starts after name is complete -->
+        <p class="hero-title" id="hero-title" aria-label="Frontend Developer, AI Architect, Web3 Builder"></p>
+
+        <!-- Tagline — fades in last -->
+        <blockquote class="hero-tagline" id="hero-tagline">
+          "Building the future one system at a time"
+        </blockquote>
+
+        <!-- CTA buttons -->
+        <div class="hero-cta" id="hero-cta">
+          <a href="#projects" class="btn btn--primary" id="hero-btn-quests">
+            <span class="btn-text">VIEW QUESTS</span>
+            <span class="btn-icon">→</span>
+          </a>
+          <a href="#contact" class="btn btn--outline" id="hero-btn-hire">
+            <span class="btn-text">HIRE ME</span>
+          </a>
+        </div>
+
+      </div>
+
+      <!-- Scroll indicator — bounces at bottom -->
+      <div class="hero-scroll" id="hero-scroll" aria-label="Scroll down">
+        <span class="hero-scroll-text">SCROLL</span>
+        <div class="hero-scroll-arrow"></div>
+      </div>
+
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════
+         SCENE 2 — CHARACTER SHEET (About)
+         RPG stats screen for my skills and background.
+    ═══════════════════════════════════════════════════ -->
+    <section id="about" class="about" aria-label="About section — character sheet">
+
+      <div class="section-header">
+        <span class="section-number">02</span>
+        <h2 class="section-title">CHARACTER SHEET</h2>
+        <span class="section-jp" aria-hidden="true">キャラクターシート</span>
+      </div>
+
+      <div class="about-container">
+
+        <!-- LEFT PANEL: Portrait + Identity -->
+        <div class="about-portrait-panel">
+
+          <!-- CRT screen wrapper -->
+          <div class="about-screen">
+            <div class="about-screen-inner">
+
+              <!-- Avatar portrait placeholder -->
+              <div class="about-avatar" id="about-avatar" aria-label="Character portrait">
+                <div class="about-avatar-placeholder">
+                  <div class="avatar-silhouette" aria-hidden="true">
+                    <!-- SVG anime-style silhouette -->
+                    <svg viewBox="0 0 120 180" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                      <circle cx="60" cy="40" r="28" fill="#00d4ff" fill-opacity="0.15" stroke="#00d4ff" stroke-width="1.5"/>
+                      <path d="M 20 180 Q 20 120 60 115 Q 100 120 100 180" fill="#00d4ff" fill-opacity="0.12" stroke="#00d4ff" stroke-width="1.5"/>
+                      <circle cx="60" cy="40" r="14" fill="#00d4ff" fill-opacity="0.3"/>
+                    </svg>
+                  </div>
+                  <div class="avatar-label">YOGESH.PNG</div>
+                </div>
+
+                <!-- Animated scan line over avatar -->
+                <div class="avatar-scan" aria-hidden="true"></div>
+              </div>
+
+              <!-- Identity card below portrait -->
+              <div class="about-identity">
+                <div class="identity-row">
+                  <span class="identity-label">NAME</span>
+                  <span class="identity-value">Yogesh</span>
+                </div>
+                <div class="identity-row">
+                  <span class="identity-label">CLASS</span>
+                  <span class="identity-value accent">Full Stack Developer</span>
+                </div>
+                <div class="identity-row">
+                  <span class="identity-label">LEVEL</span>
+                  <span class="identity-value"><span class="accent">4</span> — Mid-level</span>
+                </div>
+                <div class="identity-row">
+                  <span class="identity-label">GUILD</span>
+                  <span class="identity-value gold">Available for Hire</span>
+                </div>
+                <div class="identity-row">
+                  <span class="identity-label">ORIGIN</span>
+                  <span class="identity-value">Kathmandu, Nepal 🇳🇵</span>
+                </div>
+              </div>
+
+            </div><!-- /.about-screen-inner -->
+          </div><!-- /.about-screen -->
+
+        </div><!-- /.about-portrait-panel -->
+
+        <!-- RIGHT PANEL: Stats + Bio -->
+        <div class="about-stats-panel">
+
+          <!-- Bio text -->
+          <div class="about-bio">
+            <p>
+              A frontend developer and builder at heart — I architect interfaces that bridge humans and complex systems.
+              With experience in React, Web3, and AI integration, I turn ambitious ideas into living, breathing products.
+              Currently leveling up my core skills and building a body of work that speaks for itself.
+            </p>
+          </div>
+
+          <!-- Stats section -->
+          <div class="about-stats" id="about-stats">
+            <div class="stats-header">
+              <span class="stats-title">— SKILL PARAMETERS —</span>
+            </div>
+
+            <!-- Stats are dynamically generated by about.js -->
+            <div class="stats-list" id="stats-list" role="list" aria-label="Skill statistics">
+              <!-- Injected by about.js -->
+            </div>
+
+          </div>
+
+          <!-- Special traits -->
+          <div class="about-traits">
+            <span class="trait-label">SPECIAL TRAITS:</span>
+            <div class="traits-list">
+              <span class="trait">⚡ Fast Learner</span>
+              <span class="trait">🎯 Builder Mindset</span>
+              <span class="trait">🌐 Web3 Native</span>
+              <span class="trait">🤖 AI Curious</span>
+            </div>
+          </div>
+
+        </div><!-- /.about-stats-panel -->
+
+      </div><!-- /.about-container -->
+
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════
+         SCENE 3 — QUEST LOG (Projects)
+         Projects displayed as RPG quest cards.
+    ═══════════════════════════════════════════════════ -->
+    <section id="projects" class="projects" aria-label="Projects section — quest log">
+
+      <div class="section-header">
+        <span class="section-number">03</span>
+        <h2 class="section-title">QUEST LOG</h2>
+        <span class="section-jp" aria-hidden="true">クエストログ</span>
+      </div>
+
+      <!-- Filter buttons -->
+      <div class="projects-filters" id="projects-filters" role="group" aria-label="Filter projects by category">
+        <button class="filter-btn active" data-filter="all" id="filter-all">ALL QUESTS</button>
+        <button class="filter-btn" data-filter="web3" id="filter-web3">⛓ WEB3</button>
+        <button class="filter-btn" data-filter="frontend" id="filter-frontend">💻 FRONTEND</button>
+        <button class="filter-btn" data-filter="ai" id="filter-ai">🤖 AI</button>
+        <button class="filter-btn" data-filter="creative" id="filter-creative">🎨 CREATIVE</button>
+      </div>
+
+      <!-- Quest cards grid — dynamically generated by projects.js -->
+      <div class="projects-grid" id="projects-grid" aria-label="Project cards">
+        <!-- Injected by projects.js -->
+      </div>
+
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════
+         SCENE 4 — GUILD BOARD (Contact)
+         Request board where people can hire/reach me.
+    ═══════════════════════════════════════════════════ -->
+    <section id="contact" class="contact" aria-label="Contact section — guild board">
+
+      <div class="section-header">
+        <span class="section-number">04</span>
+        <h2 class="section-title">GUILD BOARD</h2>
+        <span class="section-jp" aria-hidden="true">「依頼掲示板」</span>
+      </div>
+
+      <div class="contact-container">
+
+        <!-- LEFT: Form -->
+        <div class="contact-form-wrapper">
+          <div class="contact-board">
+
+            <div class="board-header">
+              <div class="board-pin" aria-hidden="true"></div>
+              <h3 class="board-title">POST A QUEST REQUEST</h3>
+              <p class="board-subtitle">Send a commission. I respond within 24 hours.</p>
+            </div>
+
+            <form class="contact-form" id="contact-form" novalidate aria-label="Contact form">
+
+              <div class="form-group">
+                <label class="form-label" for="form-name">
+                  REQUESTER NAME <span class="form-required">*</span>
+                </label>
+                <input
+                  type="text"
+                  id="form-name"
+                  name="name"
+                  class="form-input"
+                  placeholder="Your full name"
+                  autocomplete="name"
+                  required
+                  aria-required="true"
+                  aria-describedby="form-name-error"
+                />
+                <span class="form-error" id="form-name-error" role="alert" aria-live="polite"></span>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="form-email">
+                  CONTACT SCROLL <span class="form-required">*</span>
+                </label>
+                <input
+                  type="email"
+                  id="form-email"
+                  name="email"
+                  class="form-input"
+                  placeholder="your@email.com"
+                  autocomplete="email"
+                  required
+                  aria-required="true"
+                  aria-describedby="form-email-error"
+                />
+                <span class="form-error" id="form-email-error" role="alert" aria-live="polite"></span>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="form-subject">
+                  QUEST TITLE <span class="form-required">*</span>
+                </label>
+                <input
+                  type="text"
+                  id="form-subject"
+                  name="subject"
+                  class="form-input"
+                  placeholder="What do you need built?"
+                  required
+                  aria-required="true"
+                  aria-describedby="form-subject-error"
+                />
+                <span class="form-error" id="form-subject-error" role="alert" aria-live="polite"></span>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="form-message">
+                  QUEST DETAILS <span class="form-required">*</span>
+                </label>
+                <textarea
+                  id="form-message"
+                  name="message"
+                  class="form-input form-textarea"
+                  placeholder="Describe your project, timeline, and budget..."
+                  rows="5"
+                  required
+                  aria-required="true"
+                  aria-describedby="form-message-error"
+                ></textarea>
+                <span class="form-error" id="form-message-error" role="alert" aria-live="polite"></span>
+              </div>
+
+              <button type="submit" class="btn btn--primary btn--full" id="form-submit">
+                <span class="btn-text">POST REQUEST</span>
+                <span class="btn-icon">⚔</span>
+              </button>
+
+            </form>
+
+            <!-- Success stamp — shown after successful submit -->
+            <div class="form-success" id="form-success" aria-live="polite" aria-atomic="true" hidden>
+              <div class="success-stamp">
+                <div class="stamp-inner">
+                  <span class="stamp-text">QUEST</span>
+                  <span class="stamp-text">ACCEPTED</span>
+                </div>
+              </div>
+              <p class="success-message">Your request has been posted to the board. I'll be in touch soon.</p>
+            </div>
+
+          </div><!-- /.contact-board -->
+        </div><!-- /.contact-form-wrapper -->
+
+        <!-- RIGHT: Guild info + Social links -->
+        <div class="contact-info">
+
+          <div class="contact-availability">
+            <div class="availability-dot" aria-hidden="true"></div>
+            <span>Currently accepting new quests</span>
+          </div>
+
+          <div class="guild-emblems">
+            <h3 class="guild-emblems-title">— GUILD NETWORK —</h3>
+
+            <a
+              href="https://github.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="guild-link"
+              id="social-github"
+              aria-label="GitHub — Repository Vault"
+            >
+              <div class="guild-emblem">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+                </svg>
+              </div>
+              <div class="guild-link-info">
+                <span class="guild-link-name">REPOSITORY VAULT</span>
+                <span class="guild-link-sub">github.com/yogesh</span>
+              </div>
+            </a>
+
+            <a
+              href="https://linkedin.com/in/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="guild-link"
+              id="social-linkedin"
+              aria-label="LinkedIn — Guild Network"
+            >
+              <div class="guild-emblem">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                </svg>
+              </div>
+              <div class="guild-link-info">
+                <span class="guild-link-name">GUILD NETWORK</span>
+                <span class="guild-link-sub">linkedin.com/in/yogesh</span>
+              </div>
+            </a>
+
+            <a
+              href="mailto:yogesh@example.com"
+              class="guild-link"
+              id="social-email"
+              aria-label="Email — Direct Message"
+            >
+              <div class="guild-emblem">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <rect width="20" height="16" x="2" y="4" rx="2"/>
+                  <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+                </svg>
+              </div>
+              <div class="guild-link-info">
+                <span class="guild-link-name">DIRECT MESSAGE</span>
+                <span class="guild-link-sub">yogesh@example.com</span>
+              </div>
+            </a>
+
+          </div><!-- /.guild-emblems -->
+
+          <!-- Current status -->
+          <div class="contact-status">
+            <div class="status-item">
+              <span class="status-label">RESPONSE TIME</span>
+              <span class="status-value">Within 24h</span>
+            </div>
+            <div class="status-item">
+              <span class="status-label">TIMEZONE</span>
+              <span class="status-value">NPT (UTC+5:45)</span>
+            </div>
+            <div class="status-item">
+              <span class="status-label">OPEN TO</span>
+              <span class="status-value">Remote · Contract · Full-time</span>
+            </div>
+          </div>
+
+        </div><!-- /.contact-info -->
+
+      </div><!-- /.contact-container -->
+
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════
+         FOOTER
+    ═══════════════════════════════════════════════════ -->
+    <footer class="footer" role="contentinfo">
+      <div class="footer-inner">
+        <span class="footer-jp" aria-hidden="true">終わり</span>
+        <p class="footer-text">© 2026 Yogesh — Built with purpose. Every line learned. Every animation earned.</p>
+        <p class="footer-stack" aria-label="Built with HTML, CSS, JavaScript, GSAP, Vite">HTML · CSS · JS · GSAP · Vite</p>
+      </div>
+    </footer>
+
+    <!-- ═══════════════════════════════════════════════════
+         SCRIPTS — type="module" enables ES6 import/export
+    ═══════════════════════════════════════════════════ -->
+    <script type="module" src="/main.js"></script>
+
+  </body>
+</html>
