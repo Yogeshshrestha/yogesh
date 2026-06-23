@@ -40,53 +40,53 @@ gsap.registerPlugin(ScrollTrigger);
  */
 const PROJECTS = [
   {
-    id: 'web3-dapp',
-    title: 'DeFi Dashboard',
-    type: 'WEB3 FRONTEND',
+    id: 'wapal-nft',
+    title: 'Wapal',
+    type: 'WEB3 / NFT PLATFORM',
     category: 'web3',
-    rank: 'A',
-    rankColor: '#ffd700',
-    description: 'Full-featured DeFi interface with wallet connection, live price feeds, and smart contract interactions via ethers.js. Supports multiple chains.',
-    tech: ['React', 'ethers.js', 'wagmi', 'TypeScript', 'TailwindCSS'],
+    rank: 'S',
+    rankColor: '#ff2d55',
+    description: 'Wapal is the leading NFT creation platform on the Aptos blockchain. Owned minting flows, collection management UI, and Petra/Martian wallet connection layer.',
+    tech: ['Vue 3', 'Nuxt 3', 'Aptos SDK', 'TailwindCSS', 'TypeScript'],
     status: 'completed',
-    liveUrl: '#',
+    liveUrl: 'https://wapal.io/',
     repoUrl: '#',
   },
   {
-    id: 'web3-nft',
-    title: 'NFT Mint Interface',
-    type: 'WEB3 / SMART CONTRACT',
-    category: 'web3',
+    id: 'mokshya-ai',
+    title: 'Mokshya AI',
+    type: 'AI CYBERSECURITY AGENT',
+    category: 'ai',
+    rank: 'S',
+    rankColor: '#ffd700',
+    description: 'An AI-powered cybersecurity agent that detects threats, audits smart contracts, and protects Web3 infrastructure in real time. Designed threat visualization and auditing dashboard.',
+    tech: ['Vue 3', 'Nuxt 3', 'Python API', 'Web3', 'GraphQL'],
+    status: 'completed',
+    liveUrl: 'https://mokshya.ai/',
+    repoUrl: '#',
+  },
+  {
+    id: 'mokshya-io',
+    title: 'Mokshya',
+    type: 'AI & WEB3 INFRASTRUCTURE',
+    category: 'creative',
+    rank: 'A',
+    rankColor: '#8b5cf6',
+    description: 'Empowering Web3 with AI-Native Innovation. Mokshya builds production-grade AI Agents, Applications, and Web3 Infrastructure — engineered at the intersection of decentralized systems and artificial intelligence.',
+    tech: ['Vue 3', 'Nuxt 3', 'Web3', 'Python', 'Docker'],
+    status: 'completed',
+    liveUrl: 'https://mokshya.io/',
+    repoUrl: '#',
+  },
+  {
+    id: 'the-loonies',
+    title: 'The Loonies',
+    type: 'NFT PFP COLLECTION',
+    category: 'creative',
     rank: 'B',
     rankColor: '#00d4ff',
-    description: 'Clean NFT minting interface connected to a Solidity ERC-721 contract. Includes wallet authentication, mint progress, and rarity reveal.',
-    tech: ['React', 'Solidity', 'ethers.js', 'IPFS', 'OpenZeppelin'],
-    status: 'completed',
-    liveUrl: '#',
-    repoUrl: '#',
-  },
-  {
-    id: 'ai-chat',
-    title: 'AI Chat Interface',
-    type: 'AI INTEGRATION',
-    category: 'ai',
-    rank: 'B',
-    rankColor: '#8b5cf6',
-    description: 'Custom frontend for an LLM-powered chat system. Streaming responses, conversation history, and system prompt configuration built in.',
-    tech: ['Vanilla JS', 'Fetch API', 'CSS', 'OpenAI API', 'WebSockets'],
-    status: 'completed',
-    liveUrl: '#',
-    repoUrl: '#',
-  },
-  {
-    id: 'react-dashboard',
-    title: 'Analytics Dashboard',
-    type: 'FRONTEND',
-    category: 'frontend',
-    rank: 'C',
-    rankColor: '#00ff88',
-    description: 'Data visualization dashboard built with React. Charts, filterable tables, and real-time data polling. Responsive layout for all screen sizes.',
-    tech: ['React', 'Chart.js', 'CSS Modules', 'REST API'],
+    description: 'The best PFP NFT collection on Aptos. Built the collection showcase and metadata verification structures.',
+    tech: ['Aptos SDK', 'Smart Contracts', 'IPFS', 'TailwindCSS'],
     status: 'completed',
     liveUrl: '#',
     repoUrl: '#',
@@ -94,28 +94,15 @@ const PROJECTS = [
   {
     id: 'anime-portfolio',
     title: 'Anime Portfolio',
-    type: 'CREATIVE DEV',
+    type: 'CREATIVE DEVELOPMENT',
     category: 'creative',
     rank: 'B',
-    rankColor: '#ff2d55',
-    description: 'Anime-themed interactive portfolio site. Particle backgrounds, RPG character sheet, quest log projects, GSAP animations throughout.',
+    rankColor: '#00ff88',
+    description: 'Anime-themed interactive animated portfolio site. Particle backgrounds, RPG character sheet, quest log projects, GSAP animations throughout.',
     tech: ['HTML', 'CSS', 'Vanilla JS', 'GSAP', 'Vite'],
     status: 'progress',
     liveUrl: '#',
-    repoUrl: '#',
-  },
-  {
-    id: 'landing-page',
-    title: 'SaaS Landing Page',
-    type: 'FRONTEND',
-    category: 'frontend',
-    rank: 'C',
-    rankColor: '#00ff88',
-    description: 'High-converting SaaS landing page with scroll animations, pricing section, testimonials, and mobile-optimized layout.',
-    tech: ['HTML', 'CSS', 'JavaScript', 'GSAP'],
-    status: 'completed',
-    liveUrl: '#',
-    repoUrl: '#',
+    repoUrl: 'https://github.com/Yogeshshrestha',
   },
 ];
 
@@ -321,10 +308,10 @@ function filterCards(filter) {
     if (filter === 'all' || category === filter) {
       // Show this card
       card.classList.remove('filtered-out');
-      // Re-animate with GSAP
+      // Re-animate with GSAP, clearing props at the end so CSS hover animations can run
       gsap.fromTo(card,
         { opacity: 0, y: 20 },
-        { opacity: 1, y: 0, duration: 0.4, ease: 'power2.out' }
+        { opacity: 1, y: 0, duration: 0.4, ease: 'power2.out', clearProps: 'opacity,transform' }
       );
     } else {
       // Hide this card
@@ -339,23 +326,27 @@ function filterCards(filter) {
  * Animates cards in with a stagger when the section scrolls into view.
  */
 function initCardAnimations() {
-  // We need to wait a tick for the DOM to be ready
-  // requestAnimationFrame ensures the browser has painted before we query
-  requestAnimationFrame(() => {
-    const cards = document.querySelectorAll('.quest-card');
-    if (!cards.length) return;
+  const cards = document.querySelectorAll('.quest-card');
+  if (!cards.length) return;
 
-    gsap.from(cards, {
-      opacity: 0,
-      y: 40,
-      duration: 0.6,
-      stagger: 0.1,           // 0.1 seconds between each card
-      ease: 'power2.out',
-      scrollTrigger: {
-        trigger: '#projects-grid',
-        start: 'top 85%',
-        once: true,
-      }
-    });
+  // Set initial state programmatically to prevent content flashing
+  gsap.set(cards, { opacity: 0, y: 40 });
+
+  // Use GSAP ScrollTrigger to stagger-animate the cards when scrolled into view
+  gsap.to(cards, {
+    opacity: 1,
+    y: 0,
+    duration: 0.6,
+    stagger: 0.1,           // 0.1 seconds between each card
+    ease: 'power2.out',
+    clearProps: 'opacity,transform', // Clean up inline styles so CSS hover transitions can take over
+    scrollTrigger: {
+      trigger: '#projects-grid',
+      start: 'top 85%',
+      once: true,
+    }
   });
+
+  // Force ScrollTrigger to refresh trigger coordinates now that cards are rendered
+  ScrollTrigger.refresh();
 }

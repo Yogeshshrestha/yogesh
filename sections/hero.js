@@ -67,7 +67,7 @@ export function initHero() {
       // This callback runs AFTER the name is fully revealed.
       // A callback is a function passed as an argument to be called later.
       setTimeout(() => {
-        typewriterEffect(titleEl, 'Frontend Developer · AI Architect · Web3 Builder', () => {
+        typewriterEffect(titleEl, 'Frontend Engineer · Vue & Nuxt Specialist · Web3 & AI Builder', () => {
           // Runs after typewriter completes
           setTimeout(() => {
             taglineEl.classList.add('visible');  // CSS transition handles the fade
@@ -107,7 +107,7 @@ export function initHero() {
  * @param {function} onComplete - Callback when all letters are revealed
  */
 function revealNameLetterByLetter(el, cursor, onComplete) {
-  const name = 'YOGESH';
+  const name = 'YOGESH SHRESTHA';
   let index = 0;
 
   // Create a span for each letter — individual spans let us animate them
