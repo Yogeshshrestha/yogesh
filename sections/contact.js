@@ -227,22 +227,19 @@ async function submitForm(formData, submitBtn, form) {
   submitBtn.querySelector('.btn-icon').textContent = '↻';
 
   try {
-    // ── In a real project, this would be a fetch() call ───────
-    // Example of what it would look like:
-    //
-    // const response = await fetch('/api/contact', {
-    //   method: 'POST',
-    //   headers: { 'Content-Type': 'application/json' },
-    //   body: JSON.stringify(formData),   // Convert object to JSON string
-    // });
-    //
-    // if (!response.ok) throw new Error('Server error');
-    //
-    // const data = await response.json();   // Parse the JSON response
-    
-    // For now: simulate a network delay with a Promise + setTimeout
-    // In real life, this would be replaced with the fetch() call above
-    await simulateNetworkRequest(formData);
+    // Send the form data to the /api/contact endpoint.
+    // The server (vite.config.js plugin) forwards it to Resend.
+    const response = await fetch('/api/contact', {
+      method:  'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body:    JSON.stringify(formData),
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(data.error || 'Server error');
+    }
 
     // ── Success state ──────────────────────────────────────────
     showSuccess(form);
@@ -263,29 +260,10 @@ async function submitForm(formData, submitBtn, form) {
 }
 
 
-/**
- * simulateNetworkRequest
- * Pretends to send data to a server.
- * Replace this with real fetch() in production.
- * 
- * PROMISES EXPLAINED:
- * A Promise is a placeholder for a value that isn't ready yet.
- * new Promise((resolve, reject) => ...) creates one.
- * resolve() = success, reject() = failure.
- * await waits for the Promise to resolve or reject.
- */
-function simulateNetworkRequest(formData) {
-  console.log('📨 Form data ready to send:', formData);  // Remove in production
-
-  return new Promise((resolve) => {
-    setTimeout(resolve, 1800);   // Resolve after 1.8 seconds
-  });
-}
-
 
 /**
  * showSuccess
- * Hides the form and shows the "Quest Accepted" stamp.
+ * Hides the form and shows the "Quest Sent" stamp.
  */
 function showSuccess(form) {
   const successEl = document.getElementById('form-success');
@@ -301,16 +279,18 @@ function showSuccess(form) {
       form.hidden = true;           // Hide from layout
       successEl.hidden = false;     // Show success state
 
-      // Animate success stamp in
-      gsap.from('.success-stamp', {
-        scale: 3,
+      const isMobile = window.matchMedia('(max-width: 768px)').matches;
+
+      // Animate success stamp in (scoped + smaller scale on mobile to avoid overflow)
+      gsap.from('#form-success .success-stamp', {
+        scale: isMobile ? 1.4 : 2.5,
         opacity: 0,
         rotation: -15,
         duration: 0.6,
-        ease: 'back.out(1.7)',   // Bouncy ease for stamp feel
+        ease: 'back.out(1.7)',
       });
 
-      gsap.from('.success-message', {
+      gsap.from('#form-success .success-message', {
         opacity: 0,
         y: 20,
         duration: 0.5,

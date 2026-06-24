@@ -95,8 +95,9 @@
 }
 
 html {
-  scroll-behavior: smooth;          /* Enables CSS smooth scrolling */
-  scroll-padding-top: var(--nav-height); /* So anchors don't hide under nav */
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--nav-height);
+  overflow-x: hidden;              /* Prevent horizontal scroll at the root level */
 }
 
 body {
@@ -105,8 +106,9 @@ body {
   font-family: var(--font-body);
   font-size: 16px;
   line-height: 1.6;
-  overflow-x: hidden;              /* Prevent horizontal scroll */
-  -webkit-font-smoothing: antialiased; /* Smoother text rendering */
+  overflow-x: hidden;
+  min-width: 0;
+  -webkit-font-smoothing: antialiased;
 }
 
 img, video, canvas {
@@ -261,18 +263,21 @@ h1, h2, h3, h4 {
 ══════════════════════════════════════════════════════════ */
 .nav {
   position: fixed;
-  top: 0; left: 0; right: 0;
+  top: 0; left: 0;
+  width: 100%;
+  max-width: 100vw;
   z-index: 1000;
   height: var(--nav-height);
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0 var(--space-xl);
-  background: rgba(10, 10, 15, 0.85);
-  backdrop-filter: blur(20px);      /* Glassmorphism blur */
+  background: rgba(10, 10, 15, 0.92);
+  backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--border);
   transition: opacity var(--transition-slow), transform var(--transition-slow);
+  box-sizing: border-box;
 }
 
 /* The .hidden class sets opacity: 0 and pointer-events: none.
@@ -467,7 +472,7 @@ h1, h2, h3, h4 {
   position: relative;
   z-index: 3;
   text-align: center;
-  padding: var(--space-xl);
+  padding: var(--space-xl) clamp(var(--space-md), 5vw, var(--space-xl));
   max-width: 900px;
   width: 100%;
 }
@@ -499,6 +504,9 @@ h1, h2, h3, h4 {
   color: var(--accent-primary);
   letter-spacing: 0.25em;
   white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: min(360px, 60vw);
 }
 
 /* Japanese decorative text */
@@ -613,7 +621,7 @@ h1, h2, h3, h4 {
    7. ABOUT SECTION — CHARACTER SHEET
 ══════════════════════════════════════════════════════════ */
 .about {
-  padding: var(--section-padding) var(--space-xl);
+  padding: var(--section-padding) clamp(var(--space-md), 5vw, var(--space-xl));
   max-width: var(--container-max);
   margin: 0 auto;
   position: relative;
@@ -676,30 +684,31 @@ h1, h2, h3, h4 {
   width: 100%;
   aspect-ratio: 1;              /* Always a perfect square */
   background: linear-gradient(135deg, #080810, #0f0f20);
-  display: flex;
-  align-items: center;
-  justify-content: center;
   overflow: hidden;
 }
 
-.about-avatar-placeholder {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--space-sm);
-}
-
-.avatar-silhouette {
-  width: 120px;
-  opacity: 0.7;
-  filter: drop-shadow(0 0 12px var(--accent-primary));
+.avatar-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: saturate(1.05) contrast(1.05);
 }
 
 .avatar-label {
+  position: absolute;
+  left: 50%;
+  bottom: var(--space-md);
+  transform: translateX(-50%);
+  background: rgba(8, 8, 16, 0.7);
+  padding: 4px 10px;
+  border: 1px solid rgba(0, 212, 255, 0.35);
+  border-radius: 999px;
   font-family: var(--font-mono);
   font-size: 0.6rem;
   color: var(--text-secondary);
   letter-spacing: 0.2em;
+  z-index: 2;
 }
 
 /* Scanning line that sweeps across the avatar */
@@ -922,11 +931,9 @@ h1, h2, h3, h4 {
    8. PROJECTS SECTION — QUEST LOG
 ══════════════════════════════════════════════════════════ */
 .projects {
-  padding: var(--section-padding) var(--space-xl);
-  max-width: var(--container-max);
-  margin: 0 auto;
+  padding: var(--section-padding) clamp(var(--space-md), 5vw, var(--space-xl));
+  width: 100%;
   background: var(--bg-secondary);
-  max-width: 100%;
 }
 
 .projects > .section-header,
@@ -944,6 +951,7 @@ h1, h2, h3, h4 {
   gap: var(--space-sm);
   justify-content: center;
   margin-bottom: var(--space-xl);
+  padding: 0 var(--space-xs);
 }
 
 .filter-btn {
@@ -974,7 +982,7 @@ h1, h2, h3, h4 {
 /* Project cards grid */
 .projects-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(340px, 100%), 1fr));
   gap: var(--space-lg);
 }
 
@@ -983,11 +991,14 @@ h1, h2, h3, h4 {
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: 6px;
-  padding: var(--space-xl);
+  padding: clamp(var(--space-lg), 4vw, var(--space-xl));
   position: relative;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
   transition: border-color var(--transition-normal), box-shadow var(--transition-normal), transform var(--transition-normal);
   cursor: default;
+  min-width: 0;
 }
 
 /* Glowing top edge on the card */
@@ -1071,6 +1082,7 @@ h1, h2, h3, h4 {
   color: var(--text-secondary);
   line-height: 1.7;
   margin-bottom: var(--space-lg);
+  flex: 1;
 }
 
 /* Tech stack tags */
@@ -1095,6 +1107,7 @@ h1, h2, h3, h4 {
 .card-actions {
   display: flex;
   gap: var(--space-sm);
+  margin-top: auto;
 }
 
 .card-btn {
@@ -1138,7 +1151,7 @@ h1, h2, h3, h4 {
    9. CONTACT SECTION — GUILD BOARD
 ══════════════════════════════════════════════════════════ */
 .contact {
-  padding: var(--section-padding) var(--space-xl);
+  padding: var(--section-padding) clamp(var(--space-md), 5vw, var(--space-xl));
   max-width: var(--container-max);
   margin: 0 auto;
 }
@@ -1250,40 +1263,59 @@ h1, h2, h3, h4 {
   min-height: 1em;              /* Reserve space so layout doesn't jump */
 }
 
-/* Success state — quest accepted stamp */
-.form-success {
+/* Success state — quest sent stamp (hidden until submit succeeds) */
+.form-success[hidden] {
+  display: none !important;
+}
+
+.form-success:not([hidden]) {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   text-align: center;
-  padding: var(--space-xl);
+  width: 100%;
+  box-sizing: border-box;
+  padding: var(--space-xl) var(--space-md);
+  min-height: 280px;
 }
 
 .success-stamp {
-  display: inline-block;
+  display: block;
+  width: min(100%, 320px);
+  max-width: 100%;
+  box-sizing: border-box;
   border: 4px solid var(--accent-green);
   border-radius: 8px;
   padding: var(--space-md) var(--space-xl);
-  margin-bottom: var(--space-lg);
+  margin: 0 auto var(--space-lg);
   transform: rotate(-5deg);
   box-shadow: 0 0 30px rgba(0, 255, 136, 0.3);
-  animation: stampAppear 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
 }
 
 .stamp-inner {
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 0.15em;
 }
 
 .stamp-text {
   font-family: var(--font-display);
-  font-size: 1.8rem;
+  font-size: clamp(1.1rem, 5vw, 1.8rem);
   color: var(--accent-green);
-  letter-spacing: 0.3em;
-  line-height: 1;
+  letter-spacing: clamp(0.12em, 2vw, 0.3em);
+  line-height: 1.1;
+  white-space: nowrap;
 }
 
 .success-message {
   color: var(--text-secondary);
   font-size: 0.9rem;
+  line-height: 1.6;
+  max-width: 32ch;
+  margin: 0 auto;
+  padding: 0 var(--space-sm);
 }
 
 /* ---- Right panel: Guild info ---- */
@@ -1334,6 +1366,7 @@ h1, h2, h3, h4 {
   margin-bottom: var(--space-sm);
   transition: all var(--transition-normal);
   color: var(--text-secondary);
+  overflow: hidden;
 }
 
 .guild-link:hover {
@@ -1363,6 +1396,12 @@ h1, h2, h3, h4 {
   background: var(--glow-primary);
 }
 
+.guild-link-info {
+  min-width: 0;
+  overflow: hidden;
+  flex: 1;
+}
+
 .guild-link-name {
   display: block;
   font-family: var(--font-mono);
@@ -1371,6 +1410,9 @@ h1, h2, h3, h4 {
   letter-spacing: 0.1em;
   color: var(--text-primary);
   transition: color var(--transition-fast);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .guild-link-sub {
@@ -1379,6 +1421,9 @@ h1, h2, h3, h4 {
   font-size: 0.6rem;
   color: var(--text-secondary);
   margin-top: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .guild-link:hover .guild-link-name { color: var(--accent-primary); }
@@ -1397,8 +1442,10 @@ h1, h2, h3, h4 {
 .status-item {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   font-size: 0.8rem;
+  gap: var(--space-sm);
+  flex-wrap: wrap;
 }
 
 .status-label {
@@ -1499,20 +1546,11 @@ h1, h2, h3, h4 {
   50%       { transform: scale(1.3); opacity: 0.7; }
 }
 
-/* Stamp appearing with bounce */
-@keyframes stampAppear {
-  from { transform: rotate(-5deg) scale(3); opacity: 0; }
-  to   { transform: rotate(-5deg) scale(1); opacity: 1; }
-}
-
-
 /* ══════════════════════════════════════════════════════════
    12. RESPONSIVE — MEDIA QUERIES
-   Mobile-first approach: write for mobile, override for desktop.
-   We're using max-width here for simplicity since this was desktop-first.
 ══════════════════════════════════════════════════════════ */
 
-/* Tablet — 1024px and below */
+/* ── Tablet — 1024px and below ─────────────────────────── */
 @media (max-width: 1024px) {
   :root {
     --section-padding: 72px;
@@ -1526,70 +1564,186 @@ h1, h2, h3, h4 {
   .contact-container {
     grid-template-columns: 1fr;
   }
-}
 
-/* Mobile — 768px and below */
-@media (max-width: 768px) {
-  :root {
-    --section-padding: 60px;
+  /* On tablet the right guild panel comes below the form */
+  .contact-info {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-lg);
+    align-items: start;
   }
 
-  /* Nav — show hamburger, hide desktop links */
-  .nav { padding: 0 var(--space-md); }
+  .guild-emblems { margin-bottom: 0; }
+}
+
+/* ── Mobile — 768px and below ───────────────────────────── */
+@media (max-width: 768px) {
+  :root {
+    --section-padding: 56px;
+  }
+
+  /* ---- Nav ---- */
+  .nav {
+    padding: 0 var(--space-md);
+  }
   .nav-links { display: none; }
   .nav-menu-btn { display: flex; }
 
-  /* Hero corners — smaller on mobile */
+  /* ---- Hero ---- */
   .hero-corner { width: 30px; height: 30px; }
   .hero-corner--tl { top: var(--space-md); left: var(--space-md); }
   .hero-corner--tr { top: var(--space-md); right: var(--space-md); }
   .hero-corner--bl { bottom: var(--space-md); left: var(--space-md); }
   .hero-corner--br { bottom: var(--space-md); right: var(--space-md); }
 
-  /* Stack hero CTA buttons */
   .hero-cta {
     flex-direction: column;
     align-items: center;
+    gap: var(--space-sm);
   }
 
-  /* Stack about to single column */
+  /* ---- About ---- */
+  .about {
+    padding-left: var(--space-md);
+    padding-right: var(--space-md);
+  }
+
   .about-container {
     grid-template-columns: 1fr;
   }
 
   .about::before { display: none; }
 
-  /* Stat row — tighter on mobile */
   .stat-row {
-    grid-template-columns: 130px 1fr 40px;
+    grid-template-columns: minmax(0, 140px) 1fr 38px;
     gap: var(--space-sm);
+    padding: var(--space-xs) var(--space-sm);
   }
 
-  /* Full-width project grid */
-  .projects-grid {
-    grid-template-columns: 1fr;
+  .stat-name {
+    font-size: 0.7rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
-  /* Stack contact to single column */
-  .contact-container {
-    grid-template-columns: 1fr;
-  }
-
-  /* Sections — less side padding */
-  .about, .projects > *, .contact {
+  /* ---- Quest Log ---- */
+  .projects {
     padding-left: var(--space-md);
     padding-right: var(--space-md);
   }
+
+  .projects-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+  }
+
+  /* ---- Guild Board ---- */
+  .contact {
+    padding-left: var(--space-md);
+    padding-right: var(--space-md);
+  }
+
+  .contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+  }
+
+  .contact-board {
+    padding: var(--space-lg);
+    overflow-x: clip;
+  }
+
+  .form-success:not([hidden]) {
+    min-height: 220px;
+    padding: var(--space-lg) var(--space-sm);
+  }
+
+  .success-stamp {
+    width: 100%;
+    padding: var(--space-md) var(--space-lg);
+    transform: rotate(-3deg);
+  }
+
+  .success-message {
+    max-width: none;
+    font-size: 0.85rem;
+  }
 }
 
-/* Small mobile — 480px and below */
+/* ── Small mobile — 480px and below ────────────────────── */
 @media (max-width: 480px) {
-  .hero-episode-text { display: none; }
+  :root {
+    --section-padding: 48px;
+  }
+
+  /* Hero */
+  .hero-episode-text {
+    font-size: 0.55rem;
+    letter-spacing: 0.15em;
+    max-width: 52vw;
+  }
 
   .hero-cta .btn {
     width: 100%;
     justify-content: center;
   }
 
-  .filter-btn { font-size: 0.65rem; padding: 6px 14px; }
+  /* About stat row — 2-col on very small screens */
+  .stat-row {
+    grid-template-columns: 1fr 36px;
+    gap: var(--space-xs);
+  }
+
+  .stat-bar-track {
+    display: none;
+  }
+
+  /* Quest Log filters */
+  .filter-btn {
+    font-size: 0.62rem;
+    padding: 6px 12px;
+  }
+
+  /* Quest card */
+  .quest-card {
+    padding: var(--space-md);
+  }
+
+  .card-title {
+    font-size: 1.4rem;
+  }
+
+  .card-desc {
+    font-size: 0.82rem;
+  }
+
+  /* Guild board */
+  .guild-link {
+    padding: var(--space-sm) var(--space-md);
+  }
+
+  .guild-emblem {
+    width: 36px;
+    height: 36px;
+  }
+
+  .contact-status {
+    padding: var(--space-md);
+  }
+
+  .form-success:not([hidden]) {
+    min-height: 200px;
+  }
+
+  .success-stamp {
+    padding: var(--space-sm) var(--space-md);
+    border-width: 3px;
+  }
+
+  .status-label,
+  .status-value {
+    font-size: 0.72rem;
+  }
 }

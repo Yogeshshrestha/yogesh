@@ -47,7 +47,7 @@ const PROJECTS = [
     rank: 'S',
     rankColor: '#ff2d55',
     description: 'Wapal is the leading NFT creation platform on the Aptos blockchain. Owned minting flows, collection management UI, and Petra/Martian wallet connection layer.',
-    tech: [ 'Nuxt 3', 'Aptos SDK', 'TailwindCSS', 'TypeScript'],
+    tech: [ 'Nuxt 3', 'Aptos SDK', 'Smart Contract','TailwindCSS', 'TypeScript'],
     status: 'completed',
     liveUrl: 'https://wapal.io/',
     repoUrl: '#',
