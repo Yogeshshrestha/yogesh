@@ -37,12 +37,13 @@ gsap.registerPlugin(ScrollTrigger);
  *   color — CSS color for this bar (optional, defaults to accent-primary)
  */
 const STATS = [
-  { name: 'Vue 3 / Nuxt 3',    value: 90, color: '#41b883' },
-  { name: 'JavaScript / TS',   value: 85, color: '#3178c6' },
-  { name: 'Web3 / Smart Contract Integration', value: 88, color: '#627eea' },
-  { name: 'AI Feature Integration',   value: 82, color: '#8b5cf6' },
-  { name: 'Tailwind / SCSS',   value: 85, color: '#38bdf8' },
-  { name: 'APIs (REST/GraphQL)', value: 80, color: '#00ff88' },
+  { name: 'Vue 3 / Nuxt 3',                    value: 92, color: '#41b883' },
+  { name: 'TypeScript / JavaScript',            value: 86, color: '#3178c6' },
+  { name: 'AI Chat Integration',           value: 88, color: '#8b5cf6' },
+  { name: 'Web3 / Wallet Integration',          value: 87, color: '#627eea' },
+  { name: 'Tailwind CSS / Vuetify 3 / SCSS',  value: 85, color: '#38bdf8' },
+  { name: 'REST APIs / GraphQL',               value: 83, color: '#00ff88' },
+  { name: 'Security (DOMPurify · CSP)',        value: 76, color: '#ff6b6b' },
 ];
 
 
