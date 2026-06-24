@@ -233,4 +233,16 @@ function initSectionReveal() {
       once: true,
     }
   });
+
+  gsap.from('.about-resume', {
+    opacity: 0,
+    y: 30,
+    duration: 0.8,
+    ease: 'power2.out',
+    scrollTrigger: {
+      trigger: '.about-resume',
+      start: 'top 90%',
+      once: true,
+    }
+  });
 }
