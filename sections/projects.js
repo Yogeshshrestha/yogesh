@@ -47,7 +47,7 @@ const PROJECTS = [
     rank: 'S',
     rankColor: '#ff2d55',
     description: 'Wapal is the leading NFT creation platform on the Aptos blockchain. Owned minting flows, collection management UI, and Petra/Martian wallet connection layer.',
-    tech: ['Vue 3', 'Nuxt 3', 'Aptos SDK', 'TailwindCSS', 'TypeScript'],
+    tech: [ 'Nuxt 3', 'Aptos SDK', 'TailwindCSS', 'TypeScript'],
     status: 'completed',
     liveUrl: 'https://wapal.io/',
     repoUrl: '#',
@@ -55,12 +55,12 @@ const PROJECTS = [
   {
     id: 'mokshya-ai',
     title: 'Mokshya AI',
-    type: 'AI CYBERSECURITY AGENT',
+    type: 'FRONTEND / AI DASHBOARD',
     category: 'ai',
     rank: 'S',
     rankColor: '#ffd700',
-    description: 'An AI-powered cybersecurity agent that detects threats, audits smart contracts, and protects Web3 infrastructure in real time. Designed threat visualization and auditing dashboard.',
-    tech: ['Vue 3', 'Nuxt 3', 'Python API', 'Web3', 'GraphQL'],
+    description: 'Built the frontend for Mokshya AI — threat visualization UI, auditing dashboards, and browser-side integration with AI and Web3 APIs.',
+    tech: [ 'Nuxt 3', 'Python API', 'Web3', 'GraphQL'],
     status: 'completed',
     liveUrl: 'https://mokshya.ai/',
     repoUrl: '#',
@@ -68,12 +68,12 @@ const PROJECTS = [
   {
     id: 'mokshya-io',
     title: 'Mokshya',
-    type: 'AI & WEB3 INFRASTRUCTURE',
+    type: 'FRONTEND / COMPANY PLATFORM',
     category: 'creative',
     rank: 'A',
     rankColor: '#8b5cf6',
-    description: 'Empowering Web3 with AI-Native Innovation. Mokshya builds production-grade AI Agents, Applications, and Web3 Infrastructure — engineered at the intersection of decentralized systems and artificial intelligence.',
-    tech: ['Vue 3', 'Nuxt 3', 'Web3', 'Python', 'Docker'],
+    description: 'Developed the Mokshya marketing and product frontend — responsive Vue/Nuxt interfaces that present AI and Web3 offerings and connect users to backend services.',
+    tech: ['Nuxt 3'],
     status: 'completed',
     liveUrl: 'https://mokshya.io/',
     repoUrl: '#',
@@ -86,7 +86,7 @@ const PROJECTS = [
     rank: 'B',
     rankColor: '#00d4ff',
     description: 'The best PFP NFT collection on Aptos. Built the collection showcase and metadata verification structures.',
-    tech: ['Aptos SDK', 'Smart Contracts', 'IPFS', 'TailwindCSS'],
+    tech: ['Aptos SDK', 'Smart Contracts', 'TailwindCSS'],
     status: 'completed',
     liveUrl: '#',
     repoUrl: '#',
@@ -227,15 +227,17 @@ function createCardHTML(project) {
         >
           ▶ LIVE DEMO
         </a>
+        ${project.repoUrl !== '#' ? `
         <a 
           href="${project.repoUrl}" 
           class="card-btn"
           id="card-repo-${project.id}"
-          ${project.repoUrl === '#' ? 'aria-disabled="true"' : 'target="_blank" rel="noopener noreferrer"'}
+          target="_blank" rel="noopener noreferrer"
           aria-label="View ${project.title} repository"
         >
           ⌥ REPOSITORY
         </a>
+        ` : ''}
       </div>
     </article>
   `;

@@ -39,8 +39,8 @@ gsap.registerPlugin(ScrollTrigger);
 const STATS = [
   { name: 'Vue 3 / Nuxt 3',    value: 90, color: '#41b883' },
   { name: 'JavaScript / TS',   value: 85, color: '#3178c6' },
-  { name: 'Web3 / Aptos SDK',  value: 88, color: '#627eea' },
-  { name: 'AI Cyber Security', value: 82, color: '#8b5cf6' },
+  { name: 'Web3 / Smart Contract Integration', value: 88, color: '#627eea' },
+  { name: 'AI Feature Integration',   value: 82, color: '#8b5cf6' },
   { name: 'Tailwind / SCSS',   value: 85, color: '#38bdf8' },
   { name: 'APIs (REST/GraphQL)', value: 80, color: '#00ff88' },
 ];

@@ -580,7 +580,7 @@ h1, h2, h3, h4 {
 /* Scroll indicator at bottom of hero */
 .hero-scroll {
   position: absolute;
-  bottom: var(--space-xl);
+  bottom: var(--space-sm);
   left: 50%;
   transform: translateX(-50%);
   z-index: 3;
