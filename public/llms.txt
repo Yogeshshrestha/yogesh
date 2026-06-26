@@ -1,0 +1,39 @@
+# Yogesh Shrestha — Frontend Engineer Portfolio
+
+Yogesh Shrestha is a Frontend Engineer from Kathmandu, Nepal with 4 years of experience building production Vue 3 / Nuxt 3 SPAs for AI SaaS platforms and Web3 applications.
+
+## About
+
+- Name: Yogesh Shrestha
+- Role: Frontend Engineer
+- Location: Kathmandu, Nepal
+- Specialisation: Vue 3, Nuxt 3, TypeScript, Pinia, Web3, AI integration
+- Available for: Remote contract, full-time roles
+
+## Core Skills
+
+- Vue 3 / Nuxt 3 (SSR & SPA)
+- TypeScript, JavaScript
+- Pinia state management
+- Vuetify 3, Tailwind CSS, SCSS
+- Web3 / Aptos SDK / Move smart contracts
+- AI streaming chat UIs, real-time markdown rendering
+- REST APIs, GraphQL, Axios
+- DOMPurify, content security
+- Vitest, GSAP, jsPDF
+
+## Projects
+
+- [Mokshya AI](https://mokshya.ai): AI-powered cybersecurity platform for penetration testing, vulnerability analysis, compliance auditing (ISO 27001, PCI DSS, SOC 2), and document security review. Users interact through a streaming AI chat with document upload (PDF/DOCX). Built with Nuxt 3, Vue 3, Vuetify 3, Pinia, TypeScript, GraphQL, and DOMPurify.
+
+- [Wapal](https://wapal.io): Leading NFT creation and trading platform on the Aptos blockchain. Handles wallet connections (Petra & Martian), NFT minting flows, on-chain collection management, and marketplace UI. Built with Nuxt 3, Aptos SDK, and Move smart contracts.
+
+- [Mokshya Protocol](https://mokshya.io): Public website for a multi-chain Web3 open-source organisation building smart contracts, SDKs, infrastructure, and dApps across Ethereum, Bitcoin, Aptos, Solana, and Sui. SSR Nuxt 3 frontend with a headless WordPress blog via GraphQL.
+
+- [This Portfolio](https://yogeshshrestha9.com.np): Anime-RPG themed portfolio site. Built with Vanilla JS, GSAP animations, and Vite.
+
+## Contact
+
+- Email: yogeshshrestha845@gmail.com
+- GitHub: https://github.com/Yogeshshrestha
+- LinkedIn: https://linkedin.com/in/yogeshshrestha
