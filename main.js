@@ -28,8 +28,12 @@ import { initContact }  from './sections/contact.js';
 
 import { gsap }          from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { inject }        from '@vercel/analytics';
 
 gsap.registerPlugin(ScrollTrigger);
+
+// Initialize Vercel Web Analytics
+inject();
 
 
 // ── Initialize everything when DOM is ready ────────────────
