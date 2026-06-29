@@ -29,11 +29,15 @@ import { initContact }  from './sections/contact.js';
 import { gsap }          from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { inject }        from '@vercel/analytics';
+import { injectSpeedInsights } from '@vercel/speed-insights';
 
 gsap.registerPlugin(ScrollTrigger);
 
 // Initialize Vercel Web Analytics
 inject();
+
+// Initialize Vercel Speed Insights
+injectSpeedInsights();
 
 
 // ── Initialize everything when DOM is ready ────────────────
